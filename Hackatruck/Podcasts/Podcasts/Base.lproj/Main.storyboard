@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PX6-p9-Tun">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Podcast Table View Controller-->
+        <scene sceneID="Cic-xY-MEu">
+            <objects>
+                <tableViewController id="PX6-p9-Tun" customClass="PodcastTableViewController" customModule="Podcasts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bml-BA-PDv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Procure por um Podcast..." id="o2L-V6-l71">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="PX6-p9-Tun" id="jnh-Qy-3UP"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcast" rowHeight="100" id="2u3-DF-gLT" customClass="PodcastTableViewCell" customModule="Podcasts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2u3-DF-gLT" id="pIR-rd-gbJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="UqS-OL-AqJ" userLabel="Podcast">
+                                            <rect key="frame" x="16" y="10" width="320.5" height="80"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gtr-1L-vYN" userLabel="Foto">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="XFy-Xf-ooY"/>
+                                                        <constraint firstAttribute="height" constant="80" id="hze-Ld-RI2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jj7-qL-lrL" userLabel="SVDados">
+                                                    <rect key="frame" x="99" y="0.0" width="221.5" height="80"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JU1-u4-3LR" userLabel="Nome">
+                                                            <rect key="frame" x="0.0" y="0.0" width="221.5" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="six-vO-Re1" userLabel="SVquantidade">
+                                                            <rect key="frame" x="0.0" y="40" width="221.5" height="40"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text=" quantidade de episódios:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTs-ME-DZB">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="190" height="40"/>
+                                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkd-qg-ZbB">
+                                                                    <rect key="frame" x="191" y="0.0" width="30.5" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30.5" id="36X-ZT-IuX"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="UqS-OL-AqJ" secondAttribute="bottom" constant="10" id="Wfi-vi-Aak"/>
+                                        <constraint firstItem="UqS-OL-AqJ" firstAttribute="top" secondItem="pIR-rd-gbJ" secondAttribute="top" constant="10" id="cIs-iQ-xtb"/>
+                                        <constraint firstItem="UqS-OL-AqJ" firstAttribute="leading" secondItem="pIR-rd-gbJ" secondAttribute="leading" constant="16" id="l3q-Av-Rgs"/>
+                                        <constraint firstAttribute="trailing" secondItem="UqS-OL-AqJ" secondAttribute="trailing" constant="38.5" id="tG1-OZ-89u"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="fotoPodcastLabel" destination="gtr-1L-vYN" id="ME7-J7-J4X"/>
+                                    <outlet property="nomePodcastLabel" destination="JU1-u4-3LR" id="gm8-Cv-s15"/>
+                                    <outlet property="quantidadeEpisodiosLabel" destination="Jkd-qg-ZbB" id="Kjq-1b-TF7"/>
+                                    <outletCollection property="gestureRecognizers" destination="ygc-s1-N81" appends="YES" id="WFY-FL-J8s"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PX6-p9-Tun" id="EMY-7s-aQR"/>
+                            <outlet property="delegate" destination="PX6-p9-Tun" id="S3X-Ab-7Ye"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="o2L-V6-l71" id="UTJ-Lz-FQE"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U4i-Ax-7du" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TGy-Vd-Rj2" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="right" id="ygc-s1-N81">
+                    <connections>
+                        <action selector="Swipe:" destination="TGy-Vd-Rj2" id="b7J-sY-zkU"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-122" y="16"/>
+        </scene>
+    </scenes>
+</document>

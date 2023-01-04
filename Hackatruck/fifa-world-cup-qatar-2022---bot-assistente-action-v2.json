@@ -1,0 +1,3622 @@
+{
+  "name": "FIFA World Cup Qatar 2022 - Bot Assistente-action",
+  "type": "action",
+  "counts": {
+    "actions": 6,
+    "intents": 4,
+    "entities": 3,
+    "data_types": 0,
+    "global_variables": 0
+  },
+  "status": "Available",
+  "language": "pt-br",
+  "skill_id": "c15be057-1c92-439b-a561-cf6f171f6cf4",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi. Reformule sua pergunta."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "Receio não entender o que você está perguntando, por favor, refo",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi. Eu posso conectar você a um agente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Desculpe não poder ajudá-lo. Vou conectá-lo a um agente imediatamente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi o que você está pedindo; vou conectá-lo a um agente."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Vamos mandá-lo para um agente disponível."
+                },
+                "agent_unavailable": {
+                  "message": "Não há agentes disponíveis neste momento. Quando houver um disponível, conectaremos você."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Acho que não entendi. Eu posso conectar você a um agente.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Desculpe não poder ajudá-lo. Vou conectá-lo a um agente imediata",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "Acho que não entendi o que você está pedindo; vou conectá-lo a u",
+            "variable": "step_003",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_250",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "De qual time você gostaria de saber mais?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Qatar",
+                      "value": {
+                        "input": {
+                          "text": "Qatar"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Equador",
+                      "value": {
+                        "input": {
+                          "text": "Equador"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Senegal",
+                      "value": {
+                        "input": {
+                          "text": "Senegal"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Holanda",
+                      "value": {
+                        "input": {
+                          "text": "Holanda"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Inglaterra",
+                      "value": {
+                        "input": {
+                          "text": "Inglaterra"
+                        }
+                      }
+                    },
+                    {
+                      "label": "EUA",
+                      "value": {
+                        "input": {
+                          "text": "EUA"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Irã",
+                      "value": {
+                        "input": {
+                          "text": "Irã"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Gales",
+                      "value": {
+                        "input": {
+                          "text": "Gales"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Argentina",
+                      "value": {
+                        "input": {
+                          "text": "Argentina"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Polônia",
+                      "value": {
+                        "input": {
+                          "text": "Polônia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "México",
+                      "value": {
+                        "input": {
+                          "text": "México"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Arábia Saudita",
+                      "value": {
+                        "input": {
+                          "text": "Arábia Saudita"
+                        }
+                      }
+                    },
+                    {
+                      "label": "França",
+                      "value": {
+                        "input": {
+                          "text": "França"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Australia",
+                      "value": {
+                        "input": {
+                          "text": "Australia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Tunísia",
+                      "value": {
+                        "input": {
+                          "text": "Tunísia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Dinamarca",
+                      "value": {
+                        "input": {
+                          "text": "Dinamarca"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Japão",
+                      "value": {
+                        "input": {
+                          "text": "Japão"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Espanha",
+                      "value": {
+                        "input": {
+                          "text": "Espanha"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Alemanha",
+                      "value": {
+                        "input": {
+                          "text": "Alemanha"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Costa Rica",
+                      "value": {
+                        "input": {
+                          "text": "Costa Rica"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Marrocos",
+                      "value": {
+                        "input": {
+                          "text": "Marrocos"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Croácia",
+                      "value": {
+                        "input": {
+                          "text": "Croácia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Bélgica",
+                      "value": {
+                        "input": {
+                          "text": "Bélgica"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Canadá",
+                      "value": {
+                        "input": {
+                          "text": "Canadá"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Brasil",
+                      "value": {
+                        "input": {
+                          "text": "Brasil"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Suiça",
+                      "value": {
+                        "input": {
+                          "text": "Suiça"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Sérvia",
+                      "value": {
+                        "input": {
+                          "text": "Sérvia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Camarões",
+                      "value": {
+                        "input": {
+                          "text": "Camarões"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Portugal",
+                      "value": {
+                        "input": {
+                          "text": "Portugal"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Coréia",
+                      "value": {
+                        "input": {
+                          "text": "Coréia"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Uruguai",
+                      "value": {
+                        "input": {
+                          "text": "Uruguai"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Gana",
+                      "value": {
+                        "input": {
+                          "text": "Gana"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_37399",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_250",
+            "next_step": "step_671"
+          },
+          {
+            "step": "step_671",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O que quer saber sobre o "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": "?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Próximo Jogo",
+                      "value": {
+                        "input": {
+                          "text": "Próximo Jogo"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Fase de Grupos",
+                      "value": {
+                        "input": {
+                          "text": "Fase de Grupos"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Situação na Copa",
+                      "value": {
+                        "input": {
+                          "text": "Situação na Copa"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Me informe mais sobre outro time",
+                      "value": {
+                        "input": {
+                          "text": "Me informe mais sobre outro time"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Já tenho tudo que queria",
+                      "value": {
+                        "input": {
+                          "text": "Já tenho tudo que queria"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_18376",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_671",
+            "condition": {
+              "exists": {
+                "variable": "step_250"
+              }
+            },
+            "next_step": "step_936"
+          },
+          {
+            "step": "step_936",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " já foi eliminado da copa! (Fase-de-grupos)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_936",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Arábia Saudita",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Tunísia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Dinamarca",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Alemanha",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Costa Rica",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Bélgica",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Canadá",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Sérvia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Camarões",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Uruguai",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Gana",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Qatar",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Equador",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Irã",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Gales",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "México",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Situação na Copa",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_762"
+          },
+          {
+            "step": "step_762",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " já foi eliminado da copa! (Oitavas-de-final)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_762",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Australia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Japão",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Coréia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "EUA",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Senegal",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Polônia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Espanha",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Suiça",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Situação na Copa",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_976"
+          },
+          {
+            "step": "step_976",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " está nas quartas-de-final da copa do mundo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_976",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Brasil",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "França",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Croácia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Inglaterra",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Holanda",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Argentina",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Portugal",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Marrocos",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Situação na Copa",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_708"
+          },
+          {
+            "step": "step_708",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO A",
+                  "source": "https://i.imgur.com/OGhngj7.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo A:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_708",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Holanda",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Qatar",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Equador",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Arábia Saudita",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_547"
+          },
+          {
+            "step": "step_547",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO B",
+                  "source": "https://i.imgur.com/7fp25eZ.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo B:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_547",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Inglaterra",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "EUA",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Irã",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Gales",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_592"
+          },
+          {
+            "step": "step_592",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO C",
+                  "source": "https://i.imgur.com/pPnbWvS.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo C:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_592",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Argentina",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Polônia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Arábia Saudita",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "México",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_869"
+          },
+          {
+            "step": "step_869",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO D",
+                  "source": "https://i.imgur.com/c2xIDPt.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo D:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_869",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Dinamarca",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "França",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Australia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Tunísia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_403"
+          },
+          {
+            "step": "step_403",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO E",
+                  "source": "https://i.imgur.com/Ot0AGSO.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo E:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_403",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Japão",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Espanha",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Alemanha",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Costa Rica",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_966"
+          },
+          {
+            "step": "step_966",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO F",
+                  "source": "https://i.imgur.com/oKJCJ3i.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo F:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_966",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Marrocos",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Croácia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Bélgica",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Canadá",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_544"
+          },
+          {
+            "step": "step_544",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO G",
+                  "source": "https://i.imgur.com/QEbjOy6.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo G:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_544",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Brasil",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Suiça",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Sérvia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Camarões",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_522"
+          },
+          {
+            "step": "step_522",
+            "output": {
+              "generic": [
+                {
+                  "title": "GRUPO H",
+                  "source": "https://i.imgur.com/bjOa84D.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tabela do Grupo H:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                }
+              ]
+            },
+            "variable": "step_522",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Portugal",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Coréia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Uruguai",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Gana",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Fase de Grupos",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_187"
+          },
+          {
+            "step": "step_187",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O próximo jogo do "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " será no dia 09/12, às 12h (Horário de Brasilia).\n\nA partida Croácia x Brasil - nas quartas-de-final da copa do mundo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_187",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Brasil",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Croácia",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_646"
+          },
+          {
+            "step": "step_646",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O próximo jogo do "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " será no dia 10/12, às 16h (Horário de Brasilia).\n\nA partida Inglaterra x França - nas quartas-de-final da copa do mundo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_646",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "França",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Inglaterra",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_133"
+          },
+          {
+            "step": "step_133",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O próximo jogo do "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " será no dia 09/12, às 16h (Horário de Brasilia).\n\nA partida Holanda x Argentina - nas quartas-de-final da copa do mundo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_133",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Holanda",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Argentina",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_664"
+          },
+          {
+            "step": "step_664",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O próximo jogo do "
+                          },
+                          {
+                            "variable": "step_250"
+                          },
+                          {
+                            "scalar": " será no dia 10/12, às 12h (Horário de Brasilia).\n\nA partida Marrocos x Portugal - nas oitavas-de-final da copa do mundo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_671"
+                }
+              ]
+            },
+            "variable": "step_664",
+            "condition": {
+              "and": [
+                {
+                  "or": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Marrocos",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_250"
+                        },
+                        {
+                          "value": "Portugal",
+                          "from_entity": "entity_37399"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_671"
+                        },
+                        {
+                          "value": "Próximo Jogo",
+                          "from_entity": "entity_18376"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_526"
+          },
+          {
+            "step": "step_526",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tudo bem!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_250"
+                },
+                {
+                  "variable": "step_671"
+                },
+                {
+                  "variable": "step_936"
+                },
+                {
+                  "variable": "step_708"
+                }
+              ]
+            },
+            "variable": "step_526",
+            "condition": {
+              "and": [
+                {
+                  "exists": {
+                    "variable": "step_250"
+                  }
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_671"
+                    },
+                    {
+                      "value": "Me informe mais sobre outro time",
+                      "from_entity": "entity_18376"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_259"
+          },
+          {
+            "step": "step_259",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Ok! Encerrando consulta sobre seleções."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_259",
+            "condition": {
+              "and": [
+                {
+                  "exists": {
+                    "variable": "step_250"
+                  }
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_671"
+                    },
+                    {
+                      "value": "Já tenho tudo que queria",
+                      "from_entity": "entity_18376"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Quero saber da minha seleção",
+        "action": "action_45618",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_45618_intent_49872"
+        },
+        "variables": [
+          {
+            "title": "O próximo jogo do {variable} será no dia 09/12, às 16h (Horário ",
+            "variable": "step_133",
+            "data_type": "any"
+          },
+          {
+            "title": "O próximo jogo do {variable} será no dia 09/12, às 12h (Horário ",
+            "variable": "step_187",
+            "data_type": "any"
+          },
+          {
+            "title": "De qual time você gostaria de saber mais?",
+            "variable": "step_250",
+            "data_type": "any"
+          },
+          {
+            "title": "Ok! Encerrando consulta sobre seleções.",
+            "variable": "step_259",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo E:",
+            "variable": "step_403",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo H:",
+            "variable": "step_522",
+            "data_type": "any"
+          },
+          {
+            "title": "Tudo bem!",
+            "variable": "step_526",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo G:",
+            "variable": "step_544",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo B:",
+            "variable": "step_547",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo C:",
+            "variable": "step_592",
+            "data_type": "any"
+          },
+          {
+            "title": "O próximo jogo do {variable} será no dia 10/12, às 16h (Horário ",
+            "variable": "step_646",
+            "data_type": "any"
+          },
+          {
+            "title": "O próximo jogo do {variable} será no dia 10/12, às 12h (Horário ",
+            "variable": "step_664",
+            "data_type": "any"
+          },
+          {
+            "title": "O que quer saber sobre o {variable}?",
+            "variable": "step_671",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo A:",
+            "variable": "step_708",
+            "data_type": "any"
+          },
+          {
+            "title": "O {variable} já foi eliminado da copa! (Oitavas-de-final)",
+            "variable": "step_762",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo D:",
+            "variable": "step_869",
+            "data_type": "any"
+          },
+          {
+            "title": "O {variable} já foi eliminado da copa! (Fase-de-grupos)",
+            "variable": "step_936",
+            "data_type": "any"
+          },
+          {
+            "title": "Tabela do Grupo F:",
+            "variable": "step_966",
+            "data_type": "any"
+          },
+          {
+            "title": "O {variable} está nas quartas-de-final da copa do mundo.",
+            "variable": "step_976",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Bem-vindo, como posso ajudá-lo?"
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_18117",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_839",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "De qual estatística você quer saber?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Gols",
+                      "value": {
+                        "input": {
+                          "text": "Gols"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Assistências",
+                      "value": {
+                        "input": {
+                          "text": "Assistências"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Cartões Amarelos",
+                      "value": {
+                        "input": {
+                          "text": "Cartões Amarelos"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Cartões Vermelhos",
+                      "value": {
+                        "input": {
+                          "text": "Cartões Vermelhos"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Já sei tudo que queria",
+                      "value": {
+                        "input": {
+                          "text": "Já sei tudo que queria"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "Eu não entendi. Selecione uma opção válida:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_12453",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_839",
+            "next_step": "step_313"
+          },
+          {
+            "step": "step_313",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Os artilheiros da copa até o momento são os seguintes:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Artilheiros",
+                  "source": "https://i.imgur.com/z45oYr9.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_839"
+                }
+              ]
+            },
+            "variable": "step_313",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "value": "Gols",
+                  "from_entity": "entity_12453"
+                }
+              ]
+            },
+            "next_step": "step_210"
+          },
+          {
+            "step": "step_210",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Os assistentes da copa até o momento são os seguintes:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Assistentes",
+                  "source": "https://i.imgur.com/1L4D6ur.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "variable": "step_313"
+                }
+              ]
+            },
+            "variable": "step_210",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "value": "Assistências",
+                  "from_entity": "entity_12453"
+                }
+              ]
+            },
+            "next_step": "step_112"
+          },
+          {
+            "step": "step_112",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Os jogadores com mais cartões amarelos da copa até o momento são os seguintes:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "",
+                  "source": "https://i.imgur.com/1CT8AVO.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "variable": "step_313"
+                },
+                {
+                  "variable": "step_210"
+                }
+              ]
+            },
+            "variable": "step_112",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "value": "Cartões Amarelos",
+                  "from_entity": "entity_12453"
+                }
+              ]
+            },
+            "next_step": "step_624"
+          },
+          {
+            "step": "step_624",
+            "output": {
+              "generic": [
+                {
+                  "title": "Expulsos",
+                  "source": "https://i.imgur.com/97HNozK.jpg",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                },
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Os jogadores com mais cartões vermelhos da copa até o momento são os seguintes:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "variable": "step_313"
+                },
+                {
+                  "variable": "step_210"
+                },
+                {
+                  "variable": "step_112"
+                }
+              ]
+            },
+            "variable": "step_624",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "value": "Cartões Vermelhos",
+                  "from_entity": "entity_12453"
+                }
+              ]
+            },
+            "next_step": "step_786"
+          },
+          {
+            "step": "step_786",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Tudo bem! Encerrando consulta de estatísticas."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_786",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_839"
+                },
+                {
+                  "value": "Já sei tudo que queria",
+                  "from_entity": "entity_12453"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Quero saber das estatisticas",
+        "action": "action_18117",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_18117_intent_26992"
+        },
+        "variables": [
+          {
+            "title": "Os jogadores com mais cartões amarelos da copa até o momento são",
+            "variable": "step_112",
+            "data_type": "any"
+          },
+          {
+            "title": "Os assistentes da copa até o momento são os seguintes:",
+            "variable": "step_210",
+            "data_type": "any"
+          },
+          {
+            "title": "Os artilheiros da copa até o momento são os seguintes:",
+            "variable": "step_313",
+            "data_type": "any"
+          },
+          {
+            "title": "Os jogadores com mais cartões vermelhos da copa até o momento sã",
+            "variable": "step_624",
+            "data_type": "any"
+          },
+          {
+            "title": "Tudo bem! Encerrando consulta de estatísticas.",
+            "variable": "step_786",
+            "data_type": "any"
+          },
+          {
+            "title": "De qual estatística você quer saber?",
+            "variable": "step_839",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_9560",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_946",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Estamos na fase das quartas-de-final, e, até agora, a tabela está assim:"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Mata-mata",
+                  "source": "https://library.sportingnews.com/styles/crop_style_16_9_mobile_2x/s3/2022-12/POR_WC%20Round%20of%2016%20Bracket-2.jpg?itok=8C5OwBXI",
+                  "alt_text": "",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_946"
+          }
+        ],
+        "title": "Gostaria de saber como está a copa agora",
+        "action": "action_9560",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_9560_intent_32960"
+        },
+        "variables": [
+          {
+            "title": "Estamos na fase das quartas-de-final, e, até agora, a tabela est",
+            "variable": "step_946",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_45618",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_45618_intent_49872",
+        "examples": [
+          {
+            "text": "Quero saber da minha seleção"
+          },
+          {
+            "text": "Quero saber de um time específico"
+          },
+          {
+            "text": "Quero saber de um time"
+          },
+          {
+            "text": "Quero saber de uma seleção especifica"
+          },
+          {
+            "text": "Quero saber do meu time"
+          },
+          {
+            "text": "Gostaria de saber do meu time"
+          }
+        ]
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Eu vou falar com um agente/ Eu vou falar com um agente de suporte."
+          },
+          {
+            "text": "Você pode me conectar com uma pessoa real?"
+          },
+          {
+            "text": "Eu quero contatar um agente/Eu quero entrar em contato com um agente"
+          },
+          {
+            "text": "Preciso contatar a um atendente"
+          },
+          {
+            "text": "Por favor, você pode entrar em contato comigo com um agente humano?"
+          }
+        ],
+        "description": "Solicite um agente humano."
+      },
+      {
+        "intent": "action_9560_intent_32960",
+        "examples": [
+          {
+            "text": "quartas-de-final"
+          },
+          {
+            "text": "oitavas-de-final"
+          },
+          {
+            "text": "final"
+          },
+          {
+            "text": "semifinal"
+          },
+          {
+            "text": "Situação do mata-mata"
+          },
+          {
+            "text": "Situação da copa"
+          },
+          {
+            "text": "Gostaria de saber como está a copa agora"
+          },
+          {
+            "text": "Quero a tabela"
+          },
+          {
+            "text": "O que tá acontecendo na copa agora?"
+          },
+          {
+            "text": "Como tá a fase de mata-mata?"
+          },
+          {
+            "text": "Informações gerais"
+          }
+        ]
+      },
+      {
+        "intent": "action_18117_intent_26992",
+        "examples": [
+          {
+            "text": "Assistências"
+          },
+          {
+            "text": "Artilheiro"
+          },
+          {
+            "text": "Gols"
+          },
+          {
+            "text": "Artilheiros"
+          },
+          {
+            "text": "Estatísticas"
+          },
+          {
+            "text": "Quero saber das estatisticas"
+          }
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_18376",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Próximo Jogo",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Me informe mais sobre outro time",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Já tenho tudo que queria",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Situação na Copa",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Fase de Grupos",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_37399",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Gana",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Sérvia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Camarões",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Portugal",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Coréia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Uruguai",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Qatar",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Equador",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Senegal",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Holanda",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Inglaterra",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "EUA",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Irã",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Gales",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Argentina",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Polônia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "México",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Arábia Saudita",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "França",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Australia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Tunísia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Dinamarca",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Japão",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Espanha",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Alemanha",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Costa Rica",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Marrocos",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Croácia",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Bélgica",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Canadá",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Brasil",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Suiça",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_12453",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Já sei tudo que queria",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Cartões Vermelhos",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Cartões Amarelos",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Assistências",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Gols",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      },
+      "skill": {
+        "counts": {
+          "actions": 6,
+          "intents": 4,
+          "entities": 3,
+          "data_types": 0,
+          "global_variables": 0
+        }
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "counterexamples": [],
+    "system_settings": {
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "confirm_return": {
+            "text": ""
+          },
+          "confirm_switch": {
+            "text": ""
+          }
+        },
+        "question_steps_threshold": 2
+      },
+      "disambiguation": {
+        "prompt": "Você quis dizer:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "Nenhum dos itens acima"
+      },
+      "intent_classification": {
+        "training_backend_version": "v2"
+      }
+    },
+    "learning_opt_out": false,
+    "language": "pt-br"
+  },
+  "description": "created for assistant 20dfc357-6731-4a6b-96ee-6e39383212da",
+  "dialog_settings": {
+    "source_assistant": "4694800b-17df-4670-bf96-547a8e862ace"
+  },
+  "created": "2022-12-06T21:11:07.716Z",
+  "updated": "2022-12-06T21:11:07.716Z",
+  "snapshot": "2",
+  "assistant_id": "20dfc357-6731-4a6b-96ee-6e39383212da",
+  "assistant_references": []
+}
